@@ -1,0 +1,7 @@
+org\tjhuey\wechat\pojo\Button.class
+org\tjhuey\wechat\pojo\AccessToken.class
+org\tjhuey\wechat\pojo\Menu.class
+org\tjhuey\wechat\pojo\ComplexButton.class
+org\tjhuey\user\pojo\User.class
+org\tjhuey\wechat\pojo\CommonButton.class
+org\tjhuey\wechat\pojo\ViewButton.class

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+
+	<!-- 扫描包加载Service实现类 -->
+	<context:component-scan base-package="org.tjhuey.wechat.*"></context:component-scan>
+
+	<!--定时任务配置 start -->
+	<bean name="weiXinJobDeatil"
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="org.tjhuey.wechat.init.quartz.WeiXinQuartzJob"/>
+		<property name="jobDataMap">
+			<map>
+				<!-- key为引用的时候的名字 value-ref 为容器中的bean -->
+				<entry key="weChatTestTask" value-ref="weChatTestTask" />
+			</map>
+		</property>
+		<property name="durability" value="true"/>
+	</bean>
+
+	<bean id="cronTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="weiXinJobDeatil" />
+        <property name="cronExpression" value="0/3 * * * * ?" />
+    </bean>
+
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="weiXinJobDeatil" />
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+	<!--定时任务配置 end -->
+
+</beans>
