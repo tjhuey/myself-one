@@ -1,0 +1,16 @@
+
+/*2016.08.13*/
+.q-indxtopion{
+	display: inline-block;
+    width: 22px;
+    height: 23px;
+    background: url(../images/guanYuD.png) 0 0 no-repeat;
+    background-position: 0px 0px;
+    vertical-align: middle;
+    margin-right: 7px;
+}
+.q-inxtopp{
+	color: #cccccc;
+	font-weight: bold;
+	font-size: 14px;
+}

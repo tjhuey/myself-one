@@ -1,0 +1,4 @@
+org\tjhuey\manager\user\service\SupervisorService.class
+org\tjhuey\manager\common\service\AdvertisementsService.class
+org\tjhuey\manager\common\service\impl\AdvertisementsServiceImpl.class
+org\tjhuey\manager\user\service\impl\SupervisorServiceImpl.class

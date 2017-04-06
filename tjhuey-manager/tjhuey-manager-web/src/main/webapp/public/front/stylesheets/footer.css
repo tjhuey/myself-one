@@ -1,0 +1,237 @@
+/*定投宝*/
+.productsStatic {width: 1200px;margin: 0 auto 30px;overflow: hidden;background: #bb92f3;box-shadow: 0 2px 3px #e2e3e3;position: relative;}
+.proInvestBtn {width: 252px;height: 53px;display: block;color: #344656;font-size: 16px;line-height: 53px;
+position: absolute;left: 0;bottom: 0;text-align: center;}
+.proInvestBtn:hover {text-decoration: underline;color: #344656;}
+.proStaLeft {width: 252px;height:196px;overflow: hidden;float: left;}
+.proStaLeft a {margin-top: 10px;}
+.proStaRight {width: 748px;/*height: 193px;*/overflow: hidden;float: left;background: #fff;margin-top: 3px;}
+.proStaProductList,.proFangProductList {overflow: hidden;display: none;}
+.proStaRightBody {overflow: hidden;border-bottom: 1px solid #efefef;padding-bottom: 8px;position: relative;}
+.proStsRightDiv1 {overflow: hidden;height: 84px;}
+.proStsRP1,.proStsRP2 {font-size: 16px;color: #4a5059;width: 110px;text-align: center;padding-top: 28px;float: left;}
+.proStsRP1 span,.proStsRP2 span {font-size: 20px;line-height: 30px;display: block;}
+.proStsRP2 {width: 162px;}
+.proStsRP2_a {line-height: 38px;}
+.proStsRightDiv2 {overflow: hidden;height: 40px;}
+.proStsRightP1,.proStsRightP2,.proStsRightP3 {float: left;width: 195px;overflow: hidden;font-size: 14px;color: #a7a6a4;line-height: 40px;padding-left: 25px;}
+.proStsRightP1 span {font-size: 20px;color: #ff862c;}
+.proStsRightP2 {width: 174px;padding-left: 0;}
+.proStsRightP2 span,.proStsRightP3 span {font-size: 20px;color: #29212a;}
+.proStsRightP3 {padding-left: 0;}
+.proProgress {width: 64px;height: 4px;display: inline-block;float: right;background: #cececf;border-radius: 10px;margin-top: 18px;position: relative;}
+.proProgress i {position: absolute;height: 4px;background: #24a3d8;border-radius: 10px;display: inline-block;top: 0;left: 0;}
+.proButton1,.proButton2,.proButton3 {width: 84px;height: 28px;color: #fff;background: #ff8a10;line-height: 28px;text-align: center;float: right;margin-right: 30px;
+    margin-top: 5px;font-size: 16px;border-radius: 20px;}
+.proButton1:hover {background: #ffa140;color: #fff;transition: all 0.2s ease-in-out 0s;}
+.proButton2,.proButton3 {background: #b4b4b4;transition: all 0.2s ease-in-out 0s;}
+.proStsRightDiv3 {height: 60px;overflow: hidden;}
+.proStsRP3,.proStsRP4 {font-size: 14px;color: #67696a;line-height: 60px;margin-left: 25px;float: left;margin-right: 80px;}
+.proStsRP3 img,.proStsRP4 img {margin-right: 6px;}
+.proStsRP4 {margin-left: 0;margin-right: 0;}
+.proStsRightP3 em {color: #a7a6a4;}
+   
+/*排行*/
+.indexRankDiv {overflow: hidden;width: 1200px;height: 60px;margin: 0 auto 30px;background: #fff;}
+.indexRankDiv h2 {width: 252px;float: left;color: #0098e1;font-size: 20px;text-align: center;line-height: 60px;}
+.indexRankBox {overflow: hidden;float: left;height: 60px;}
+.indexRankTit {height: 32px;overflow: hidden;}
+.indexRankTit span {line-height: 32px;font-size: 16px;color: #191e20;display: inline-block;float: left;text-align: center;}
+.indexRTSpan1,.indexRTUlSpan1 {width: 76px;}
+.indexRTSpan2,.indexRTUlSpan2 {width: 200px;margin-left: 72px;}
+.indexRTSpan3,.indexRTSpan4,.indexRTUlSpan3,.indexRTUlSpan4 {width: 199px;}
+.indexRankUL {height: 28px;overflow: hidden;}
+.indexRankUL li span {font-size:16px;color:#f16108;line-height:28px;display: inline-block;float: left;text-align: center;}
+   
+ /*打字机*/
+#ticker {
+	height: 12em;
+	padding: 0.6em 0;
+	margin: 0 0 1.8em 0;
+	border-top: 3px solid #efefef;
+	border-bottom: 3px solid #efefef;
+	position: relative;
+}
+
+#ticker .cursor {
+	display: inline-block;
+	background: #565c61;
+	width: 0.6em;
+	height: 1em;
+	text-align: center;
+}
+
+#ticker p {
+	margin-bottom: 0.8em;
+}
+
+#ticker code {
+	margin: 0.4em 0.4em;
+	display: block;
+}
+
+#ticker .next {
+	position: absolute;
+	bottom: 1em;
+}  
+   
+    /*网页结尾区域*/
+        #footer{
+            height: 330px;/*设置底部高度*/
+            width: 100%;
+            background: #15171f;
+        }
+
+        /*结尾区域主体部分*/
+        #footer .f_con{
+            width: 1180px;
+            /*调整外边距,居中显示*/
+            margin: 0px auto;
+            color: #51555d;
+            padding: 40px 0px;
+        }
+
+        /*内部元素布局*/
+        #footer .f_con .f_desc dl{
+            /*向左浮动*/
+            float: left;
+            margin-right: 60px;
+        }
+
+        /*内部元素样式*/
+        #footer .f_con .f_desc dl dt{
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /*内部元素样式*/
+        #footer .f_con .f_desc dl dd{
+            line-height: 34px;
+        }
+
+        /*内部元素样式*/
+        #footer .f_con .f_desc dl dd a{
+            text-decoration: none;
+            color: #51555d;
+            font-size: 14px;
+        }
+
+        /*鼠标滑过样式*/
+        #footer .f_con .f_desc dl dd a:hover{
+            color: #fff;
+        }
+
+        /*分享图标*/
+        #footer .f_con .f_desc dl dd .share{
+            width:35px;
+            height:34px;
+            /*转换为块级元素*/
+            display:block;
+            /*向左浮动*/
+            float:left;
+            /*设置背景图片*/
+            background:url("../../images/pe_icon.png") no-repeat;
+            margin-right:5px;
+        }
+
+        /*通过定位,获取所需logo*/
+        #footer .f_con .f_desc dl dd .f_wb{
+            background-position: -227px -77px;
+        }
+
+        /*鼠标划过定位新logo*/
+        #footer .f_con .f_desc dl dd .f_wb:hover{
+            background-position: -227px -113px;
+        }
+
+        /*通过定位,获取所需logo*/
+        #footer .f_con .f_desc dl dd .f_qq{
+            background-position: -265px -77px;
+        }
+
+        /*鼠标划过定位新logo*/
+        #footer .f_con .f_desc dl dd .f_qq:hover{
+            background-position: -265px -113px;
+        }
+
+        /*联系方式区域*/
+        #footer .f_con .f_tel{
+            width: 365px;
+            /*向右浮动*/
+            float: right;
+        }
+
+        /*图片区域*/
+        #footer .f_con .f_tel .f_qrcode{
+            width: 153px;
+            height: 135px;
+            margin-left: 80px;
+            /*向左浮动*/
+            float: left;
+        }
+
+        /*时间部分*/
+        #footer .f_con .f_tel .f_time{
+            /*向左浮动*/
+            float: left;
+            padding-left: 51px;
+        }
+
+        /*内部元素样式*/
+        #footer .f_con .f_tel .f_time .f_price{
+            /*调整外边距,居中显示*/
+            margin: 10px auto;
+            /*内部元素居中显示*/
+            text-align: center;
+        }
+
+        /*内部元素样式*/
+        #footer .f_con .f_tel .f_time .f_price span{
+            /*转换为块级元素*/
+            display: block;
+        }
+
+        /*内部元素样式*/
+        #footer .f_con .f_tel .f_time .f_phone{
+            font-size: 24px;
+            color: #fff;
+            /*下方外边距为10像素*/
+            margin-bottom: 10px;
+        }
+
+        /*内部元素样式*/
+        #footer .f_con .f_tel .f_time .f_price span{
+            line-height: 24px;
+            font-size: 14px;
+        }
+
+        /*内部元素样式*/
+        #footer .f_con .f_tel .f_time .f_mm{
+            width: 152px;
+            height: 39px;
+            /*内部元素居中显示*/
+            text-align: center;
+            border: 1px solid #292c35;
+            line-height: 39px;
+            font-size: 14px;
+            /*设置圆角为19像素*/
+            border-radius: 19px;
+        }
+
+        /*end footer*/
+
+        /*copyright start*/
+
+        /*页脚部分*/
+        .copyright{
+            width:100%;
+            height:54px;
+            background:#191b24;
+            line-height:54px;
+            /*内部元素居中显示*/
+            text-align:center;
+            font-size:14px;
+            color:#333740;
+        }
+
+        /*end copyright*/

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.tjhuey.manager.mapper.t_advertisementsMapper">
+	<resultMap id="BaseResultMap" type="org.tjhuey.manager.pojo.t_advertisements">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="time" property="time" jdbcType="TIMESTAMP" />
+		<result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+		<result column="location" property="location" jdbcType="TINYINT" />
+		<result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+		<result column="image_resolution" property="imageResolution"
+			jdbcType="VARCHAR" />
+		<result column="image_size" property="imageSize" jdbcType="VARCHAR" />
+		<result column="image_format" property="imageFormat" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="target" property="target" jdbcType="TINYINT" />
+		<result column="is_use" property="isUse" jdbcType="BIT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, time, order_time, location, image_url,
+		image_resolution,
+		image_size, image_format,
+		url, target, is_use
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_advertisements
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		t_advertisements
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="org.tjhuey.manager.pojo.t_advertisements">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into t_advertisements (id, name, time,
+		order_time, location,
+		image_url,
+		image_resolution, image_size, image_format,
+		url, target,
+		is_use)
+		values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},
+		#{time,jdbcType=TIMESTAMP},
+		#{orderTime,jdbcType=TIMESTAMP},
+		#{location,jdbcType=TINYINT}, #{imageUrl,jdbcType=VARCHAR},
+		#{imageResolution,jdbcType=VARCHAR}, #{imageSize,jdbcType=VARCHAR},
+		#{imageFormat,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR},
+		#{target,jdbcType=TINYINT}, #{isUse,jdbcType=BIT})
+	</insert>
+	<insert id="insertSelective" parameterType="org.tjhuey.manager.pojo.t_advertisements">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into t_advertisements
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="name != null">
+				name,
+			</if>
+			<if test="time != null">
+				time,
+			</if>
+			<if test="orderTime != null">
+				order_time,
+			</if>
+			<if test="location != null">
+				location,
+			</if>
+			<if test="imageUrl != null">
+				image_url,
+			</if>
+			<if test="imageResolution != null">
+				image_resolution,
+			</if>
+			<if test="imageSize != null">
+				image_size,
+			</if>
+			<if test="imageFormat != null">
+				image_format,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="target != null">
+				target,
+			</if>
+			<if test="isUse != null">
+				is_use,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=BIGINT},
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderTime != null">
+				#{orderTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="location != null">
+				#{location,jdbcType=TINYINT},
+			</if>
+			<if test="imageUrl != null">
+				#{imageUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="imageResolution != null">
+				#{imageResolution,jdbcType=VARCHAR},
+			</if>
+			<if test="imageSize != null">
+				#{imageSize,jdbcType=VARCHAR},
+			</if>
+			<if test="imageFormat != null">
+				#{imageFormat,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="target != null">
+				#{target,jdbcType=TINYINT},
+			</if>
+			<if test="isUse != null">
+				#{isUse,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.tjhuey.manager.pojo.t_advertisements">
+		update t_advertisements
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				time = #{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderTime != null">
+				order_time = #{orderTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="location != null">
+				location = #{location,jdbcType=TINYINT},
+			</if>
+			<if test="imageUrl != null">
+				image_url = #{imageUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="imageResolution != null">
+				image_resolution = #{imageResolution,jdbcType=VARCHAR},
+			</if>
+			<if test="imageSize != null">
+				image_size = #{imageSize,jdbcType=VARCHAR},
+			</if>
+			<if test="imageFormat != null">
+				image_format = #{imageFormat,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="target != null">
+				target = #{target,jdbcType=TINYINT},
+			</if>
+			<if test="isUse != null">
+				is_use = #{isUse,jdbcType=BIT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.tjhuey.manager.pojo.t_advertisements">
+		update
+		t_advertisements
+		set name = #{name,jdbcType=VARCHAR},
+		time =
+		#{time,jdbcType=TIMESTAMP},
+		order_time =
+		#{orderTime,jdbcType=TIMESTAMP},
+		location =
+		#{location,jdbcType=TINYINT},
+		image_url = #{imageUrl,jdbcType=VARCHAR},
+		image_resolution = #{imageResolution,jdbcType=VARCHAR},
+		image_size =
+		#{imageSize,jdbcType=VARCHAR},
+		image_format =
+		#{imageFormat,jdbcType=VARCHAR},
+		url = #{url,jdbcType=VARCHAR},
+		target =
+		#{target,jdbcType=TINYINT},
+		is_use = #{isUse,jdbcType=BIT}
+		where id =
+		#{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="queryAdvertisementFront"  parameterType="map" resultMap="BaseResultMap">
+		SELECT * FROM t_advertisements WHERE location =#{location} AND is_use=1 ORDER
+		BY order_time DESC LIMIT #{limit};
+	</select>
+</mapper>
