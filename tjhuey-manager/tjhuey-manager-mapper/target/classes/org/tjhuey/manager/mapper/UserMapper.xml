@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.tjhuey.manager.mapper.UserDao">
+	<!-- 基础映射 -->
+	<resultMap type="org.tjhuey.manager.pojo.User" id="baseUserMap">
+		<id column="user_id" property="userId" />
+		<result column="user_name" property="userName" />
+		<result column="nick_name" property="nickName" />
+		<result column="password" property="password" />
+		<result column="sex" property="sex" />
+		<result column="email" property="email" />
+		<result column="phone_number" property="phoneNumber" />
+		<result column="count" property="count" />
+		<result column="score" property="score" />
+		<result column="img_path" property="imgPath" />
+		<result column="rigist_time" property="rigistTime" />
+		<result column="last_time" property="lastTime" />
+		<result column="login_time" property="loginTime" />
+		<result column="authority" property="authority" />
+		<association property="address" column="address_id"
+			select="org.tjhuey.manager.mapper.AddressDao.getAddressById" />
+	</resultMap>
+	
+	<!-- 检验登录 -->
+	<select id="login" resultMap="baseUserMap">
+		select * from users
+		where user_name = #{userName}
+	</select>
+	
+	<!-- 查询单个信息 -->
+	<select id="queryDetailById" resultMap="baseUserMap">
+		select * from users
+		where user_id = #{userId}
+	</select>
+	
+	
+	
+	
+	<!-- 添加会员 -->
+	<insert id="save" parameterType="org.tjhuey.manager.pojo.User">
+		INSERT INTO
+		users(phone_number,user_name,sex,email,nick_name,PASSWORD,img_path,rigist_time,last_time,login_time,COUNT,score,authority,address_id)
+		VALUES
+		(#{phoneNumber},#{userName},#{sex},#{email},#{nickName},#{password},#{imgPath},#{rigistTime},#{lastTime},#{loginTime},#{count},#{score},#{authority},#{address.addressId})
+	</insert>
+
+	<!-- 分页 -->
+	<select id="queryByPager" resultMap="baseUserMap">
+		select * from users
+		where
+		authority = #{authority}
+		order by user_id desc
+		limit #{start},#{size}
+
+	</select>
+
+	<!-- 删除个人 -->
+	<delete id="deleteById" parameterType="integer">
+		delete from users
+		where
+		user_id = #{userId}
+	</delete>
+
+	<!-- 获取会员记录数 -->
+	<select id="getCount" resultType="integer">
+		select count(*) from users
+		where authority = #{authority}
+	</select>
+
+	<!-- 查询所有会员 -->
+	<select id="queryAllUser" resultMap="baseUserMap">
+		select * from users
+	</select>
+
+	<!-- 通过id修改详细信息 -->
+	<update id="updateById">
+		update users
+		<set>
+			phone_number = #{phoneNumber},
+			user_name = #{userName},
+			sex =
+			#{sex},
+			email = #{email},
+			nick_name = #{nickName},
+			PASSWORD =
+			#{password},
+			img_path = #{imgPath},
+			rigist_time = #{rigistTime},
+			last_time =
+			#{lastTime},
+			login_time = #{loginTime},
+			COUNT = #{count},
+			score =#{score},
+			authority=#{authority},
+			address_id =
+			#{address.addressId}
+			where user_id = #{userId}
+		</set>
+	</update>
+	
+	<update id="updateScore">
+		update users set score = #{score}
+		where user_id = #{userId}
+	</update>
+	
+	<update id="addScore">
+		update users set score = score + #{resourceScore}
+		where user_id = #{userId}
+	</update>
+	
+</mapper>

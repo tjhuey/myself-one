@@ -5,6 +5,77 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
-<!-- 扫描包加载Service实现类 -->
-	<context:component-scan base-package="org.tjhuey.manager.*.service"></context:component-scan>
+	<!-- 扫描包加载Service实现类 -->
+	<context:component-scan base-package="org.tjhuey.manager.service.*.impl"></context:component-scan>
+	
+	<!-- 集成shiro开始 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="realm" ref="JFRealm" />
+	</bean>
+
+	<bean id="JFRealm" class="org.tjhuey.manager.service.utils.shiro.JFRealm">
+		<property name="credentialsMatcher">
+			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+				<property name="hashAlgorithmName" value="MD5" />
+				<property name="hashIterations" value="1024" />
+			</bean>
+		</property>
+
+	</bean>
+
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:resource/ehcache.xml" />
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor" />
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/backLogin.jsp" />
+		<property name="unauthorizedUrl" value="/unauthorized.jsp" />
+		<property name="filterChainDefinitions">
+			<value>
+                /css/** = anon
+                /iamges/** = anon
+                /public/** = anon
+                /js/** = anon
+				/back/** = anon
+				# everything else requires authentication:
+				/WEB-INF/** = authc
+			</value>
+		</property>
+	</bean>
+	<!-- 配置shiro结束  -->
+	
+	<!-- 定义触发器的执行类 -->
+	<bean id="triggerService" class="org.tjhuey.manager.service.trigger.impl.TriggerServiceImpl"></bean>
+	
+	<!-- 开始集成quartz -->
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	    <property name="targetObject" ref="triggerService" />
+	    <property name="targetMethod" value="doIt" />
+	</bean>
+	
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	    <property name="jobDetail" ref="jobDetail" />
+	    <!-- 每五秒中执行一次 -->
+	    <property name="cronExpression" value="0 0 12 * * ?" />
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	    <property name="triggers">
+	        <list>
+	            <ref bean="cronTrigger" />
+	        </list>
+	    </property>
+	</bean>
+	<!-- 结束集成quartz -->
 </beans>

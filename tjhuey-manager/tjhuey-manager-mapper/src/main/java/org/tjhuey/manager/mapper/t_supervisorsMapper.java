@@ -18,4 +18,6 @@ public interface t_supervisorsMapper {
     int updateByPrimaryKey(t_supervisors record);
 
 	List<t_supervisors> getAll();
+
+	t_supervisors selectInfoByNameAndPwd(t_supervisors supervisor);
 }

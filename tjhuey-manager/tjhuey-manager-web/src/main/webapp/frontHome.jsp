@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>huey</title>
 
 		<link rel="shortcut icon" href="${ctx }/public/front/images/huey27.ico"/>
 		<!-- 皮肤背景、颜色 -->
@@ -141,9 +141,10 @@
 						</li>
 					</ul>
 				</div>
-				<hr>
+				<hr/>
 	</div>
 			<!-- 新手专享(体验标) end  -->
+			
 	 <!-- lookup start -->
 	 <div class="indexRankDiv">
         <h2>本周随笔浏览排名：</h2>

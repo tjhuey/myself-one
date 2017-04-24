@@ -8,9 +8,8 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
-	<!-- 数据库连接池 -->
 	<!-- 加载配置文件 -->
-	<context:property-placeholder location="classpath:resource/*.properties" />
+	<context:property-placeholder file-encoding="utf-8" location="classpath:resource/*.properties" />
 	<!-- 数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close">
@@ -21,13 +20,30 @@
 		<property name="maxActive" value="10" />
 		<property name="minIdle" value="5" />
 	</bean>
-	<!-- 配置sqlsessionFactory -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"></property>
-		<property name="dataSource" ref="dataSource"></property>
+	
+	<!-- 扫描mapper的配置文件 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations"
+			value="classpath:org/tjhuey/manager/mapper/*.xml" />
+		<!-- 继承pageHelper插件 -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+							params=pageNum=start;pageSize=limit;
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
 	</bean>
-	<!-- 配置扫描包，加载mapper代理对象 -->
+	<!-- 扫描mapper的接口 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="org.tjhuey.manager.mapper"></property>
+		<property name="basePackage" value="org.tjhuey.manager.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" />
 	</bean>
+	
 </beans>

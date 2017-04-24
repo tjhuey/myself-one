@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.tjhuey.manager.mapper.AddressDao">
+
+	<resultMap type="org.tjhuey.manager.pojo.Address" id="baseAddressMap">
+		<id column="address_id" property="addressId" />
+		<result column="province" property="province" />
+		<result column="city" property="city" />
+		<result column="detail" property="detail" />
+	</resultMap>
+
+	<select id="getAddressById" resultMap="baseAddressMap">
+		select * from addresses
+		where address_id = #{id}
+	</select>
+	
+	<update id="update" parameterType="org.tjhuey.manager.pojo.Address" keyProperty="addressId">
+		update addresses
+		<set>
+			province = #{province},
+			city = #{city},
+			detail = #{detail}
+			where address_id = #{addressId}
+		</set>
+	</update>
+	
+	
+<!-- 	<select id="getAddressByNoId" parameterType="Address" -->
+<!-- 		resultMap="baseAddressMap"> -->
+<!-- 		select * from addresses -->
+<!-- 		<where> -->
+<!-- 			<if test="#{province} != null and #{province != ''}"> -->
+<!-- 				province = #{province} -->
+<!-- 			</if> -->
+<!-- 			<if test="#{city} != null and #{city != ''}"> -->
+<!-- 				and city = #{city} -->
+<!-- 			</if> -->
+<!-- 			<if test="#{detail} != null and #{detail != ''}"> -->
+<!-- 				and	detail = #{detail} -->
+<!-- 			</if> -->
+<!-- 		</where> -->
+<!-- 	</select> -->
+
+	<insert id="save" parameterType="org.tjhuey.manager.pojo.Address" keyProperty="addressId" useGeneratedKeys="true">
+		insert into
+		addresses(province,city,detail)
+		values(#{province},#{city},#{detail})
+	</insert>
+
+</mapper>

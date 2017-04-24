@@ -18,7 +18,7 @@ require.config({
 		},
 		kindeditor: {
 			deps: [],
-			exports:　"KindEditor"
+			exports: "KindEditor"
 		},
 		zh_CN: {
 			deps: ["kindeditor"]

@@ -1,371 +1,406 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.tjhuey.manager.mapper.t_supervisorsMapper" >
-  <resultMap id="BaseResultMap" type="org.tjhuey.manager.pojo.t_supervisors" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="reality_name" property="realityName" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="password_continuous_errors" property="passwordContinuousErrors" jdbcType="INTEGER" />
-    <result column="is_password_error_locked" property="isPasswordErrorLocked" jdbcType="BIT" />
-    <result column="password_error_locked_time" property="passwordErrorLockedTime" jdbcType="TIMESTAMP" />
-    <result column="is_allow_login" property="isAllowLogin" jdbcType="BIT" />
-    <result column="login_count" property="loginCount" jdbcType="BIGINT" />
-    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
-    <result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR" />
-    <result column="last_logout_time" property="lastLogoutTime" jdbcType="TIMESTAMP" />
-    <result column="last_login_city" property="lastLoginCity" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
-    <result column="mobile1" property="mobile1" jdbcType="VARCHAR" />
-    <result column="mobile2" property="mobile2" jdbcType="VARCHAR" />
-    <result column="office_telephone" property="officeTelephone" jdbcType="VARCHAR" />
-    <result column="fax_number" property="faxNumber" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="TINYINT" />
-    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
-    <result column="level" property="level" jdbcType="TINYINT" />
-    <result column="is_erased" property="isErased" jdbcType="BIT" />
-    <result column="creater_id" property="createrId" jdbcType="BIGINT" />
-    <result column="ukey" property="ukey" jdbcType="VARCHAR" />
-    <result column="is_customer" property="isCustomer" jdbcType="BIT" />
-    <result column="customer_num" property="customerNum" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, time, name, reality_name, password, password_continuous_errors, is_password_error_locked, 
-    password_error_locked_time, is_allow_login, login_count, last_login_time, last_login_ip, 
-    last_logout_time, last_login_city, email, telephone, mobile1, mobile2, office_telephone, 
-    fax_number, sex, birthday, level, is_erased, creater_id, ukey, is_customer, customer_num
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_supervisors
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_supervisors
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="org.tjhuey.manager.pojo.t_supervisors" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_supervisors (id, time, name, 
-      reality_name, password, password_continuous_errors, 
-      is_password_error_locked, password_error_locked_time, 
-      is_allow_login, login_count, last_login_time, 
-      last_login_ip, last_logout_time, last_login_city, 
-      email, telephone, mobile1, 
-      mobile2, office_telephone, fax_number, 
-      sex, birthday, level, 
-      is_erased, creater_id, ukey, 
-      is_customer, customer_num)
-    values (#{id,jdbcType=BIGINT}, #{time,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
-      #{realityName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{passwordContinuousErrors,jdbcType=INTEGER}, 
-      #{isPasswordErrorLocked,jdbcType=BIT}, #{passwordErrorLockedTime,jdbcType=TIMESTAMP}, 
-      #{isAllowLogin,jdbcType=BIT}, #{loginCount,jdbcType=BIGINT}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
-      #{lastLoginIp,jdbcType=VARCHAR}, #{lastLogoutTime,jdbcType=TIMESTAMP}, #{lastLoginCity,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobile1,jdbcType=VARCHAR}, 
-      #{mobile2,jdbcType=VARCHAR}, #{officeTelephone,jdbcType=VARCHAR}, #{faxNumber,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=TINYINT}, #{birthday,jdbcType=TIMESTAMP}, #{level,jdbcType=TINYINT}, 
-      #{isErased,jdbcType=BIT}, #{createrId,jdbcType=BIGINT}, #{ukey,jdbcType=VARCHAR}, 
-      #{isCustomer,jdbcType=BIT}, #{customerNum,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="org.tjhuey.manager.pojo.t_supervisors" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_supervisors
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      id,
-      <if test="time != null" >
-        time,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="realityName != null" >
-        reality_name,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="passwordContinuousErrors != null" >
-        password_continuous_errors,
-      </if>
-      <if test="isPasswordErrorLocked != null" >
-        is_password_error_locked,
-      </if>
-      <if test="passwordErrorLockedTime != null" >
-        password_error_locked_time,
-      </if>
-      <if test="isAllowLogin != null" >
-        is_allow_login,
-      </if>
-      <if test="loginCount != null" >
-        login_count,
-      </if>
-      <if test="lastLoginTime != null" >
-        last_login_time,
-      </if>
-      <if test="lastLoginIp != null" >
-        last_login_ip,
-      </if>
-      <if test="lastLogoutTime != null" >
-        last_logout_time,
-      </if>
-      <if test="lastLoginCity != null" >
-        last_login_city,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="telephone != null" >
-        telephone,
-      </if>
-      <if test="mobile1 != null" >
-        mobile1,
-      </if>
-      <if test="mobile2 != null" >
-        mobile2,
-      </if>
-      <if test="officeTelephone != null" >
-        office_telephone,
-      </if>
-      <if test="faxNumber != null" >
-        fax_number,
-      </if>
-      <if test="sex != null" >
-        sex,
-      </if>
-      <if test="birthday != null" >
-        birthday,
-      </if>
-      <if test="level != null" >
-        level,
-      </if>
-      <if test="isErased != null" >
-        is_erased,
-      </if>
-      <if test="createrId != null" >
-        creater_id,
-      </if>
-      <if test="ukey != null" >
-        ukey,
-      </if>
-      <if test="isCustomer != null" >
-        is_customer,
-      </if>
-      <if test="customerNum != null" >
-        customer_num,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=BIGINT},
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="realityName != null" >
-        #{realityName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="passwordContinuousErrors != null" >
-        #{passwordContinuousErrors,jdbcType=INTEGER},
-      </if>
-      <if test="isPasswordErrorLocked != null" >
-        #{isPasswordErrorLocked,jdbcType=BIT},
-      </if>
-      <if test="passwordErrorLockedTime != null" >
-        #{passwordErrorLockedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isAllowLogin != null" >
-        #{isAllowLogin,jdbcType=BIT},
-      </if>
-      <if test="loginCount != null" >
-        #{loginCount,jdbcType=BIGINT},
-      </if>
-      <if test="lastLoginTime != null" >
-        #{lastLoginTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginIp != null" >
-        #{lastLoginIp,jdbcType=VARCHAR},
-      </if>
-      <if test="lastLogoutTime != null" >
-        #{lastLogoutTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginCity != null" >
-        #{lastLoginCity,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null" >
-        #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile1 != null" >
-        #{mobile1,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile2 != null" >
-        #{mobile2,jdbcType=VARCHAR},
-      </if>
-      <if test="officeTelephone != null" >
-        #{officeTelephone,jdbcType=VARCHAR},
-      </if>
-      <if test="faxNumber != null" >
-        #{faxNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=TINYINT},
-      </if>
-      <if test="birthday != null" >
-        #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="level != null" >
-        #{level,jdbcType=TINYINT},
-      </if>
-      <if test="isErased != null" >
-        #{isErased,jdbcType=BIT},
-      </if>
-      <if test="createrId != null" >
-        #{createrId,jdbcType=BIGINT},
-      </if>
-      <if test="ukey != null" >
-        #{ukey,jdbcType=VARCHAR},
-      </if>
-      <if test="isCustomer != null" >
-        #{isCustomer,jdbcType=BIT},
-      </if>
-      <if test="customerNum != null" >
-        #{customerNum,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.tjhuey.manager.pojo.t_supervisors" >
-    update t_supervisors
-    <set >
-      <if test="time != null" >
-        time = #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="realityName != null" >
-        reality_name = #{realityName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="passwordContinuousErrors != null" >
-        password_continuous_errors = #{passwordContinuousErrors,jdbcType=INTEGER},
-      </if>
-      <if test="isPasswordErrorLocked != null" >
-        is_password_error_locked = #{isPasswordErrorLocked,jdbcType=BIT},
-      </if>
-      <if test="passwordErrorLockedTime != null" >
-        password_error_locked_time = #{passwordErrorLockedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isAllowLogin != null" >
-        is_allow_login = #{isAllowLogin,jdbcType=BIT},
-      </if>
-      <if test="loginCount != null" >
-        login_count = #{loginCount,jdbcType=BIGINT},
-      </if>
-      <if test="lastLoginTime != null" >
-        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginIp != null" >
-        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
-      </if>
-      <if test="lastLogoutTime != null" >
-        last_logout_time = #{lastLogoutTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginCity != null" >
-        last_login_city = #{lastLoginCity,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null" >
-        telephone = #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile1 != null" >
-        mobile1 = #{mobile1,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile2 != null" >
-        mobile2 = #{mobile2,jdbcType=VARCHAR},
-      </if>
-      <if test="officeTelephone != null" >
-        office_telephone = #{officeTelephone,jdbcType=VARCHAR},
-      </if>
-      <if test="faxNumber != null" >
-        fax_number = #{faxNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        sex = #{sex,jdbcType=TINYINT},
-      </if>
-      <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="level != null" >
-        level = #{level,jdbcType=TINYINT},
-      </if>
-      <if test="isErased != null" >
-        is_erased = #{isErased,jdbcType=BIT},
-      </if>
-      <if test="createrId != null" >
-        creater_id = #{createrId,jdbcType=BIGINT},
-      </if>
-      <if test="ukey != null" >
-        ukey = #{ukey,jdbcType=VARCHAR},
-      </if>
-      <if test="isCustomer != null" >
-        is_customer = #{isCustomer,jdbcType=BIT},
-      </if>
-      <if test="customerNum != null" >
-        customer_num = #{customerNum,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.tjhuey.manager.pojo.t_supervisors" >
-    update t_supervisors
-    set time = #{time,jdbcType=TIMESTAMP},
-      name = #{name,jdbcType=VARCHAR},
-      reality_name = #{realityName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      password_continuous_errors = #{passwordContinuousErrors,jdbcType=INTEGER},
-      is_password_error_locked = #{isPasswordErrorLocked,jdbcType=BIT},
-      password_error_locked_time = #{passwordErrorLockedTime,jdbcType=TIMESTAMP},
-      is_allow_login = #{isAllowLogin,jdbcType=BIT},
-      login_count = #{loginCount,jdbcType=BIGINT},
-      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
-      last_logout_time = #{lastLogoutTime,jdbcType=TIMESTAMP},
-      last_login_city = #{lastLoginCity,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      telephone = #{telephone,jdbcType=VARCHAR},
-      mobile1 = #{mobile1,jdbcType=VARCHAR},
-      mobile2 = #{mobile2,jdbcType=VARCHAR},
-      office_telephone = #{officeTelephone,jdbcType=VARCHAR},
-      fax_number = #{faxNumber,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=TINYINT},
-      birthday = #{birthday,jdbcType=TIMESTAMP},
-      level = #{level,jdbcType=TINYINT},
-      is_erased = #{isErased,jdbcType=BIT},
-      creater_id = #{createrId,jdbcType=BIGINT},
-      ukey = #{ukey,jdbcType=VARCHAR},
-      is_customer = #{isCustomer,jdbcType=BIT},
-      customer_num = #{customerNum,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  
-  <select id="getAll" resultType="org.tjhuey.manager.pojo.t_supervisors">
-  	select * from t_supervisors
-  </select>
+<mapper namespace="org.tjhuey.manager.mapper.t_supervisorsMapper">
+	<resultMap id="BaseResultMap" type="org.tjhuey.manager.pojo.t_supervisors">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="time" property="time" jdbcType="TIMESTAMP" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="reality_name" property="realityName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="password_continuous_errors" property="passwordContinuousErrors"
+			jdbcType="INTEGER" />
+		<result column="is_password_error_locked" property="isPasswordErrorLocked"
+			jdbcType="BIT" />
+		<result column="password_error_locked_time" property="passwordErrorLockedTime"
+			jdbcType="TIMESTAMP" />
+		<result column="is_allow_login" property="isAllowLogin"
+			jdbcType="BIT" />
+		<result column="login_count" property="loginCount" jdbcType="BIGINT" />
+		<result column="last_login_time" property="lastLoginTime"
+			jdbcType="TIMESTAMP" />
+		<result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR" />
+		<result column="last_logout_time" property="lastLogoutTime"
+			jdbcType="TIMESTAMP" />
+		<result column="last_login_city" property="lastLoginCity"
+			jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="mobile1" property="mobile1" jdbcType="VARCHAR" />
+		<result column="mobile2" property="mobile2" jdbcType="VARCHAR" />
+		<result column="office_telephone" property="officeTelephone"
+			jdbcType="VARCHAR" />
+		<result column="fax_number" property="faxNumber" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="TINYINT" />
+		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+		<result column="level" property="level" jdbcType="TINYINT" />
+		<result column="is_erased" property="isErased" jdbcType="BIT" />
+		<result column="creater_id" property="createrId" jdbcType="BIGINT" />
+		<result column="ukey" property="ukey" jdbcType="VARCHAR" />
+		<result column="is_customer" property="isCustomer" jdbcType="BIT" />
+		<result column="customer_num" property="customerNum" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, time, name, reality_name, password, password_continuous_errors,
+		is_password_error_locked,
+		password_error_locked_time, is_allow_login, login_count, last_login_time, last_login_ip,
+		last_logout_time, last_login_city, email, telephone, mobile1, mobile2,
+		office_telephone,
+		fax_number, sex, birthday, level, is_erased, creater_id, ukey, is_customer,
+		customer_num
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_supervisors
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from t_supervisors
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="org.tjhuey.manager.pojo.t_supervisors">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into t_supervisors (id, time, name,
+		reality_name, password, password_continuous_errors,
+		is_password_error_locked, password_error_locked_time,
+		is_allow_login, login_count, last_login_time,
+		last_login_ip, last_logout_time, last_login_city,
+		email, telephone, mobile1,
+		mobile2, office_telephone, fax_number,
+		sex, birthday, level,
+		is_erased, creater_id, ukey,
+		is_customer, customer_num)
+		values (#{id,jdbcType=BIGINT}, #{time,jdbcType=TIMESTAMP},
+		#{name,jdbcType=VARCHAR},
+		#{realityName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		#{passwordContinuousErrors,jdbcType=INTEGER},
+		#{isPasswordErrorLocked,jdbcType=BIT},
+		#{passwordErrorLockedTime,jdbcType=TIMESTAMP},
+		#{isAllowLogin,jdbcType=BIT}, #{loginCount,jdbcType=BIGINT},
+		#{lastLoginTime,jdbcType=TIMESTAMP},
+		#{lastLoginIp,jdbcType=VARCHAR}, #{lastLogoutTime,jdbcType=TIMESTAMP},
+		#{lastLoginCity,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobile1,jdbcType=VARCHAR},
+		#{mobile2,jdbcType=VARCHAR}, #{officeTelephone,jdbcType=VARCHAR},
+		#{faxNumber,jdbcType=VARCHAR},
+		#{sex,jdbcType=TINYINT}, #{birthday,jdbcType=TIMESTAMP}, #{level,jdbcType=TINYINT},
+		#{isErased,jdbcType=BIT}, #{createrId,jdbcType=BIGINT},
+		#{ukey,jdbcType=VARCHAR},
+		#{isCustomer,jdbcType=BIT}, #{customerNum,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.tjhuey.manager.pojo.t_supervisors">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into t_supervisors
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="time != null">
+				time,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="realityName != null">
+				reality_name,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="passwordContinuousErrors != null">
+				password_continuous_errors,
+			</if>
+			<if test="isPasswordErrorLocked != null">
+				is_password_error_locked,
+			</if>
+			<if test="passwordErrorLockedTime != null">
+				password_error_locked_time,
+			</if>
+			<if test="isAllowLogin != null">
+				is_allow_login,
+			</if>
+			<if test="loginCount != null">
+				login_count,
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time,
+			</if>
+			<if test="lastLoginIp != null">
+				last_login_ip,
+			</if>
+			<if test="lastLogoutTime != null">
+				last_logout_time,
+			</if>
+			<if test="lastLoginCity != null">
+				last_login_city,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="telephone != null">
+				telephone,
+			</if>
+			<if test="mobile1 != null">
+				mobile1,
+			</if>
+			<if test="mobile2 != null">
+				mobile2,
+			</if>
+			<if test="officeTelephone != null">
+				office_telephone,
+			</if>
+			<if test="faxNumber != null">
+				fax_number,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="isErased != null">
+				is_erased,
+			</if>
+			<if test="createrId != null">
+				creater_id,
+			</if>
+			<if test="ukey != null">
+				ukey,
+			</if>
+			<if test="isCustomer != null">
+				is_customer,
+			</if>
+			<if test="customerNum != null">
+				customer_num,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=BIGINT},
+			<if test="time != null">
+				#{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="realityName != null">
+				#{realityName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="passwordContinuousErrors != null">
+				#{passwordContinuousErrors,jdbcType=INTEGER},
+			</if>
+			<if test="isPasswordErrorLocked != null">
+				#{isPasswordErrorLocked,jdbcType=BIT},
+			</if>
+			<if test="passwordErrorLockedTime != null">
+				#{passwordErrorLockedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isAllowLogin != null">
+				#{isAllowLogin,jdbcType=BIT},
+			</if>
+			<if test="loginCount != null">
+				#{loginCount,jdbcType=BIGINT},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginIp != null">
+				#{lastLoginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLogoutTime != null">
+				#{lastLogoutTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginCity != null">
+				#{lastLoginCity,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile1 != null">
+				#{mobile1,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile2 != null">
+				#{mobile2,jdbcType=VARCHAR},
+			</if>
+			<if test="officeTelephone != null">
+				#{officeTelephone,jdbcType=VARCHAR},
+			</if>
+			<if test="faxNumber != null">
+				#{faxNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=TINYINT},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=TINYINT},
+			</if>
+			<if test="isErased != null">
+				#{isErased,jdbcType=BIT},
+			</if>
+			<if test="createrId != null">
+				#{createrId,jdbcType=BIGINT},
+			</if>
+			<if test="ukey != null">
+				#{ukey,jdbcType=VARCHAR},
+			</if>
+			<if test="isCustomer != null">
+				#{isCustomer,jdbcType=BIT},
+			</if>
+			<if test="customerNum != null">
+				#{customerNum,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.tjhuey.manager.pojo.t_supervisors">
+		update t_supervisors
+		<set>
+			<if test="time != null">
+				time = #{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="realityName != null">
+				reality_name = #{realityName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="passwordContinuousErrors != null">
+				password_continuous_errors =
+				#{passwordContinuousErrors,jdbcType=INTEGER},
+			</if>
+			<if test="isPasswordErrorLocked != null">
+				is_password_error_locked = #{isPasswordErrorLocked,jdbcType=BIT},
+			</if>
+			<if test="passwordErrorLockedTime != null">
+				password_error_locked_time =
+				#{passwordErrorLockedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isAllowLogin != null">
+				is_allow_login = #{isAllowLogin,jdbcType=BIT},
+			</if>
+			<if test="loginCount != null">
+				login_count = #{loginCount,jdbcType=BIGINT},
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginIp != null">
+				last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLogoutTime != null">
+				last_logout_time = #{lastLogoutTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginCity != null">
+				last_login_city = #{lastLoginCity,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile1 != null">
+				mobile1 = #{mobile1,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile2 != null">
+				mobile2 = #{mobile2,jdbcType=VARCHAR},
+			</if>
+			<if test="officeTelephone != null">
+				office_telephone = #{officeTelephone,jdbcType=VARCHAR},
+			</if>
+			<if test="faxNumber != null">
+				fax_number = #{faxNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=TINYINT},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=TINYINT},
+			</if>
+			<if test="isErased != null">
+				is_erased = #{isErased,jdbcType=BIT},
+			</if>
+			<if test="createrId != null">
+				creater_id = #{createrId,jdbcType=BIGINT},
+			</if>
+			<if test="ukey != null">
+				ukey = #{ukey,jdbcType=VARCHAR},
+			</if>
+			<if test="isCustomer != null">
+				is_customer = #{isCustomer,jdbcType=BIT},
+			</if>
+			<if test="customerNum != null">
+				customer_num = #{customerNum,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.tjhuey.manager.pojo.t_supervisors">
+		update t_supervisors
+		set time = #{time,jdbcType=TIMESTAMP},
+		name = #{name,jdbcType=VARCHAR},
+		reality_name = #{realityName,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		password_continuous_errors = #{passwordContinuousErrors,jdbcType=INTEGER},
+		is_password_error_locked = #{isPasswordErrorLocked,jdbcType=BIT},
+		password_error_locked_time =
+		#{passwordErrorLockedTime,jdbcType=TIMESTAMP},
+		is_allow_login = #{isAllowLogin,jdbcType=BIT},
+		login_count = #{loginCount,jdbcType=BIGINT},
+		last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+		last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+		last_logout_time = #{lastLogoutTime,jdbcType=TIMESTAMP},
+		last_login_city = #{lastLoginCity,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR},
+		mobile1 = #{mobile1,jdbcType=VARCHAR},
+		mobile2 = #{mobile2,jdbcType=VARCHAR},
+		office_telephone = #{officeTelephone,jdbcType=VARCHAR},
+		fax_number = #{faxNumber,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=TINYINT},
+		birthday = #{birthday,jdbcType=TIMESTAMP},
+		level = #{level,jdbcType=TINYINT},
+		is_erased = #{isErased,jdbcType=BIT},
+		creater_id = #{createrId,jdbcType=BIGINT},
+		ukey = #{ukey,jdbcType=VARCHAR},
+		is_customer = #{isCustomer,jdbcType=BIT},
+		customer_num = #{customerNum,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="getAll" resultType="org.tjhuey.manager.pojo.t_supervisors">
+		select * from t_supervisors
+	</select>
+
+	<select id="selectInfoByNameAndPwd" parameterType="org.tjhuey.manager.pojo.t_supervisors"
+		resultType="org.tjhuey.manager.pojo.t_supervisors">
+		select
+			<include refid="Base_Column_List"/>
+		 from t_supervisors where name=#{name} 
+		 <if test="password != null">
+		 	and password = #{password}
+		 </if>
+		 
+	</select>
 </mapper>

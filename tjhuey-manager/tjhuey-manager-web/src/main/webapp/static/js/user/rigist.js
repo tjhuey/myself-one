@@ -1,0 +1,31 @@
+//注册用户
+$('#rigistUser').on("click", function() {
+
+	var url = getRootPath() + '/pages/rigistUser.jsp';
+	layer.open({
+		type : 2,
+		title : false,
+		area : [ '100%', '100%' ],
+		maxmin : false,
+		shadeClose : true,
+		scrollbar : true,
+		shift : Math.floor(Math.random() * 6),
+		content : url
+	});
+
+});
+
+// js获取项目根路径，如： http://localhost:8083/ResourceShare
+function getRootPath() {
+	// 获取当前网址，如： http://localhost:8083/ResourceShare/share/meun.jsp
+	var curWwwPath = window.document.location.href;
+	// 获取主机地址之后的目录，如： ResourceShare/share/meun.jsp
+	var pathName = window.document.location.pathname;
+	var pos = curWwwPath.indexOf(pathName);
+	// 获取主机地址，如： http://localhost:8083
+	var localhostPath = curWwwPath.substring(0, pos);
+	// 获取带"/"的项目名，如：/ResourceShare
+	var projectName = pathName
+			.substring(0, pathName.substr(1).indexOf('/') + 1);
+	return (localhostPath + projectName);
+}

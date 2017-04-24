@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.tjhuey.common.utils.AdvertisementUtil.Location;
-import org.tjhuey.manager.common.service.AdvertisementsService;
 import org.tjhuey.manager.pojo.t_advertisements;
 import org.tjhuey.manager.pojo.t_supervisors;
-import org.tjhuey.manager.user.service.SupervisorService;
+import org.tjhuey.manager.service.common.AdvertisementsService;
+import org.tjhuey.manager.service.user.SupervisorService;
 
 /**
  * <p>
@@ -29,22 +29,6 @@ import org.tjhuey.manager.user.service.SupervisorService;
 @Controller
 public class BackHomeController {
 
-	@Autowired
-	private AdvertisementsService advertisementsService;
 
-	@Autowired
-	private SupervisorService supervisorService;
-
-	@RequestMapping("/")
-	public String frontHomePre(Map<String, Object> map) {
-
-		List<t_advertisements> banners = advertisementsService.getAdvertisementsFront(Location.HOME_TURN_ADS, 10);
-		map.put("banners", banners);
-		List<t_supervisors> supervisors = supervisorService.getAll();
-
-		map.put("supervisors", supervisors);
-
-		return "frontHome";
-	}
 
 }

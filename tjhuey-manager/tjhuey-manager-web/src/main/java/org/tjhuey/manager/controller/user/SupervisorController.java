@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.tjhuey.manager.pojo.t_supervisors;
-import org.tjhuey.manager.user.service.SupervisorService;
+import org.tjhuey.manager.service.user.SupervisorService;
 
 /**
  * <p>
